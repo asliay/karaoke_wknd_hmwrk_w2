@@ -3,7 +3,7 @@ class Guest:
         self.name = name
         self.age = age
         self.cash = cash
-        self.bill = 0
+        self.bill = 0.00
 
 
 

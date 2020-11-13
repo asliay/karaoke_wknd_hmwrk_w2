@@ -28,7 +28,7 @@ class Room:
             self.charge_for_room_share(guest)
             self.guests.remove(guest)
 
-# Checks guests out one by one in a group, charging them their share, as above.      
+# Guests in group: Checks them out one by one, charging them their share, as above.      
     def check_out_group(self, group):
         for guest in group:
             self.charge_for_room_share(guest)
