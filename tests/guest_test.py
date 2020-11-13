@@ -14,6 +14,7 @@ class TestGuest(unittest.TestCase):
         self.guest_5 = Guest("Isla", 28, 52.00)
 
         self.room_1 = Room("Jungle Room", 5, 50.00)
+        self.drink_1 = Drink("Cocktail Pitcher", 12.00)
 
     def test_customer_has_name(self):
         self.assertEqual("Gavin", self.guest_1.name)
@@ -23,5 +24,9 @@ class TestGuest(unittest.TestCase):
 
     def test_bill_starts_at_0(self):
         self.assertEqual(0, self.guest_1.bill)
+
+    def test_buy_drink(self):
+        self.guest_2.buy_drink(self.drink_1)
+        self.assertEqual(33, self.guest_2.wallet)
 
 
