@@ -13,26 +13,28 @@ class Room:
     def check_in_guest(self, guest):
         self.guests.append(guest)
 
-# Seeing as people usually come to karaoke in groups, this calls the check_in_guest function for each guest in a group list.
-    def check_in_group(self, group):
-        for guest in group:
+# Seeing as people usually come to karaoke in groups, this calls the check_in_guest function for each guest in a given group list.
+    def check_in_group(self, group_list):
+        for guest in group_list:
             self.check_in_guest(guest)
 
-#Charges customer for their share of room cost and decreases their cash amount
-    def charge_for_room_share(self, guest):
-        guest.wallet -= (self.room_price) / (len(self.guests))
-
-# if given guest is in room guest list, this charges them their share of the room cost, and removes them (checks them out)
-    def check_out_guest(self, guest):
-        self.charge_for_room_share(guest)
-        self.guests.remove(guest)
-
-# Guests in group: Checks them out one by one, charging them their share, as above.      
-    def check_out_group(self, group):
-        for guest in group:
-            self.charge_for_room_share(guest)
-            self.check_out_guest(guest)
+# Returns a warning string if guests > room capacity
+    def capacity_reached(self):
+        if len(self.guests) > self.max_capacity:
+            return "Sorry! This room is full!"
 
 # Adds song one at a time to a room's song_queue list    
     def add_song_to_queue(self, new_song):
         self.song_queue.append(new_song)
+
+# Setles customer tab, charges customer for their share of room cost and decreases their cash amount
+    def charge_for_room_share(self, guest):
+        guest.settle_drink_tab()
+        guest.wallet -= (self.room_price) / (len(self.guests))
+
+# Charges customer their share of the room cost, settles their tab, and checks them out (removes from room)
+    def check_out_guests(self, guests):
+        for guest in self.guests:
+            self.charge_for_room_share(guest)
+            self.guests.remove(guest)
+

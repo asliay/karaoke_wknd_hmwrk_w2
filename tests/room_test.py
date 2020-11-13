@@ -17,6 +17,9 @@ class TestRoom(unittest.TestCase):
         self.guest_4 = Guest("Karissa", 27, 48.00)
         self.guest_5 = Guest("Isla", 28, 52.00)
 
+        self.drink_1 = Drink("Cocktail Pitcher", 12.00)
+        self.drink_2 = Drink("Punk IPA", 5.00)
+
     def test_room_has_name(self):
         self.assertEqual("Jungle Room", self.room_1.name)
     
@@ -28,33 +31,41 @@ class TestRoom(unittest.TestCase):
 
     def test_check_in_guest(self):
         self.room_1.check_in_guest(self.guest_1)
-        self.assertEqual(1, self.room_1.guest_count())
+        self.room_1.check_in_guest(self.guest_3)
+        self.assertEqual(2, self.room_1.guest_count())
 
     def test_check_in_group(self):
         group_1 = [self.guest_1, self.guest_2, self.guest_3, self.guest_4, self.guest_5]
         self.room_1.check_in_group(group_1)
         self.assertEqual(5, self.room_1.guest_count())
 
-    def test_charge_guest_for_room_share(self):
-        self.room_1.check_in_guest(self.guest_1)
-        self.room_1.check_in_guest(self.guest_2)
-        self.room_1.check_in_guest(self.guest_3)
-        self.room_1.check_in_guest(self.guest_4)
-        self.room_1.charge_for_room_share(self.guest_1)
-        self.assertEqual(37.5, self.guest_1.wallet)
-
-    def test_check_out_guest(self):
-        self.room_1.check_in_guest(self.guest_1)
-        self.room_1.check_out_guest(self.guest_1)
-        self.assertEqual(0, self.room_1.guest_count())
-
-    def test_check_out_group(self):
-        group_1 = [self.guest_1, self.guest_2, self.guest_3, self.guest_4, self.guest_5]
-        self.room_1.check_in_group(group_1)
-        self.room_1.check_out_group(group_1)
-        self.assertEqual(0, self.room_1.guest_count())
+    def test_capacity_reached(self):
+        self.room_3.check_in_guest(self.guest_1)
+        self.room_3.check_in_guest(self.guest_2)
+        self.room_3.check_in_guest(self.guest_3)
+        self.room_3.check_in_guest(self.guest_4)
+        self.assertEqual("Sorry! This room is full!", self.room_3.capacity_reached())
 
     def test_add_song_to_queue(self):
         song_choice = Song("Closing Time", "Semisonic", "Alt Rock")
         self.room_1.add_song_to_queue(song_choice)
         self.assertEqual(1, len(self.room_1.song_queue))
+
+    def test_charge_guest_for_room_share(self):
+        self.room_1.check_in_guest(self.guest_1)
+        self.room_1.check_in_guest(self.guest_2)
+        self.room_1.check_in_guest(self.guest_3)
+        self.room_1.check_in_guest(self.guest_4)
+        self.guest_1.order_drink(self.drink_1)
+        self.room_1.charge_for_room_share(self.guest_1)
+        self.assertEqual(25.5, self.guest_1.wallet)
+
+    def test_check_out_guests(self):
+        self.room_1.check_in_guest(self.guest_1)
+        self.room_1.check_in_guest(self.guest_2)
+        self.guest_1.order_drink(self.drink_2)
+        self.room_1.check_out_guests(self.guest_1)
+        self.assertEqual(20, self.guest_1.wallet)
+        self.assertEqual(1, self.room_1.guest_count())
+
+    
