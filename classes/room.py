@@ -11,9 +11,17 @@ class Room:
     def check_in_guest(self, guest):
         self.guests.append(guest)
 
-    def check_in_group(self, new_group):
-        for guest in new_group:
+    def check_out_guest(self, guest):
+        if guest in self.guests:
+            self.guests.remove(guest)
+
+    def check_in_group(self, group):
+        for guest in group:
             self.check_in_guest(guest)
-       
+        
+    def check_out_group(self, group):
+        for guest in group:
+            self.check_out_guest(guest)
+    
     def add_song_to_queue(self, new_song):
         self.song_queue.append(new_song)

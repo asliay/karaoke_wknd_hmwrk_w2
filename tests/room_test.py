@@ -34,6 +34,15 @@ class TestRoom(unittest.TestCase):
         self.room_1.check_in_group(group_1)
         self.assertEqual(5, self.room_1.guest_count())
 
+    def test_check_out_guest(self):
+        self.room_2.check_out_guest(self.guest_1)
+        self.assertEqual(0, self.room_1.guest_count())
+
+    def test_check_out_group(self):
+        group_1 = [self.guest_1, self.guest_2, self.guest_3, self.guest_4, self.guest_5]
+        self.room_1.check_out_group(group_1)
+        self.assertEqual(0, self.room_1.guest_count())
+
     def test_add_song_to_queue(self):
         song_choice = Song("Closing Time", "Semisonic")
         self.room_1.add_song_to_queue(song_choice)
