@@ -11,8 +11,7 @@ class Guest:
     def add_to_bill(self, bill_amount):
         self.bill += bill_amount
 
-    def buy_drink(self, drink):
-        self.wallet -= drink.price
+    def order_drink(self, drink):
         self.bill += drink.price
 
     

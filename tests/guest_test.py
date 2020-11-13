@@ -33,8 +33,8 @@ class TestGuest(unittest.TestCase):
         self.guest_1.add_to_bill(12)
         self.assertEqual(12, self.guest_1.bill)
 
-    def test_buy_drink(self):
-        self.guest_2.buy_drink(self.drink_1)
-        self.assertEqual(33, self.guest_2.wallet)
+    def test_order_drink(self):
+        self.guest_2.order_drink(self.drink_1)
+        self.assertEqual(12, self.guest_2.bill)
 
 
