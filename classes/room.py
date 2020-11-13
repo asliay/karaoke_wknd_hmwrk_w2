@@ -8,9 +8,11 @@ class Room:
     def guest_count(self):
         return len(self.guests)
 
-
+    def check_in_guest(self, guest):
+        self.guests.append(guest)
 
     def check_in_group(self, new_group):
-        self.guests.extend(new_group)
-
+        for guest in new_group:
+            self.check_in_guest(guest)
+       
   
