@@ -14,7 +14,9 @@ class TestGuest(unittest.TestCase):
         self.guest_5 = Guest("Isla", 28, 52.00)
 
         self.room_1 = Room("Jungle Room", 5, 50.00)
+        
         self.drink_1 = Drink("Cocktail Pitcher", 12.00)
+        self.drink_2 = Drink("Punk IPA", 5.00)
 
     def test_customer_has_name(self):
         self.assertEqual("Gavin", self.guest_1.name)
@@ -22,19 +24,26 @@ class TestGuest(unittest.TestCase):
     def test_customer_has_cash(self):
         self.assertEqual(50.00, self.guest_1.wallet)
 
-    def test_bill_starts_at_0(self):
-        self.assertEqual(0, self.guest_1.bill)
+    def test_tab_starts_at_0(self):
+        self.assertEqual(0, self.guest_1.drink_tab)
 
     def test_remove_cash(self):
         self.guest_1.remove_cash(25)
         self.assertEqual(25, self.guest_1.wallet)
     
-    def test_add_to_bill(self):
-        self.guest_1.add_to_bill(12)
-        self.assertEqual(12, self.guest_1.bill)
+    def test_add_to_tab(self):
+        self.guest_1.add_to_tab(12)
+        self.assertEqual(12, self.guest_1.drink_tab)
 
     def test_order_drink(self):
         self.guest_2.order_drink(self.drink_1)
-        self.assertEqual(12, self.guest_2.bill)
+        self.guest_2.order_drink(self.drink_2)
+        self.assertEqual(17, self.guest_2.drink_tab)
+
+    def test_settle_drink_tab(self):
+        self.guest_2.order_drink(self.drink_1)
+        self.guest_2.order_drink(self.drink_2)
+        self.guest_2.settle_drink_tab()
+        self.assertEqual(28, self.guest_2.wallet)
 
 
