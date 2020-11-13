@@ -7,7 +7,7 @@ from classes.drink import Drink
 
 class TestSong(unittest.TestCase):
     def setUp(self):
-        self.song = Song("Closing Time", "Semisonic")
+        self.song = Song("Closing Time", "Semisonic", "Alt-Rock")
 
     def test_song_has_name(self):
         self.assertEqual("Closing Time", self.song.name)

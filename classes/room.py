@@ -20,13 +20,12 @@ class Room:
 
 #Charges customer for their share of room cost and decreases their cash amount
     def charge_for_room_share(self, guest):
-        guest.wallet -= (self.room_price) / (self.max_capacity)
+        guest.wallet -= (self.room_price) / (len(self.guests))
 
 # if given guest is in room guest list, this charges them their share of the room cost, and removes them (checks them out)
     def check_out_guest(self, guest):
-        if guest in self.guests:
-            self.charge_for_room_share(guest)
-            self.guests.remove(guest)
+        self.charge_for_room_share(guest)
+        self.guests.remove(guest)
 
 # Guests in group: Checks them out one by one, charging them their share, as above.      
     def check_out_group(self, group):
