@@ -23,11 +23,7 @@ class Room:
         if len(self.guests) > self.max_capacity:
             return "Sorry! This room is full!"
 
-# Adds song one at a time to a room's song_queue list    
-    def add_song_to_queue(self, new_song):
-        self.song_queue.append(new_song)
-
-# Setles customer tab, charges customer for their share of room cost and decreases their cash amount
+# Settles customer tab, charges customer for their share of room cost and decreases their cash amount
     def charge_for_room_share(self, guest):
         guest.settle_drink_tab()
         guest.wallet -= (self.room_price) / (len(self.guests))

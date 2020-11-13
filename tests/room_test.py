@@ -11,11 +11,11 @@ class TestRoom(unittest.TestCase):
         self.room_2 = Room("Disco Room", 10, 100.00)
         self.room_3 = Room("Outer Space Room", 3, 30.00)
 
-        self.guest_1 = Guest("Gavin", 35, 50.00)
-        self.guest_2 = Guest("Ailsa", 27, 45.00)
-        self.guest_3 = Guest("Stewart", 32, 55.00)
-        self.guest_4 = Guest("Karissa", 27, 48.00)
-        self.guest_5 = Guest("Isla", 28, 52.00)
+        self.guest_1 = Guest("Gavin", 35, "Closing Time", 50.00)
+        self.guest_2 = Guest("Ailsa", 27, "Romeo and Juliet", 45.00)
+        self.guest_3 = Guest("Stewart", 32, "Don't Think Twice, It's Alright", 55.00)
+        self.guest_4 = Guest("Karissa", 27, "Super Trouper", 48.00)
+        self.guest_5 = Guest("Isla", 28, "Oops! I Did it Again", 52.00)
 
         self.drink_1 = Drink("Cocktail Pitcher", 12.00)
         self.drink_2 = Drink("Punk IPA", 5.00)
@@ -45,11 +45,7 @@ class TestRoom(unittest.TestCase):
         self.room_3.check_in_guest(self.guest_3)
         self.room_3.check_in_guest(self.guest_4)
         self.assertEqual("Sorry! This room is full!", self.room_3.capacity_reached())
-
-    def test_add_song_to_queue(self):
-        song_choice = Song("Closing Time", "Semisonic", "Alt Rock")
-        self.room_1.add_song_to_queue(song_choice)
-        self.assertEqual(1, len(self.room_1.song_queue))
+    
 
     def test_charge_guest_for_room_share(self):
         self.room_1.check_in_guest(self.guest_1)
