@@ -7,7 +7,7 @@ from classes.song import Song
 
 class TestGuest(unittest.TestCase):
     def setUp(self):
-        self.guest = Guest("Gavin", 50.00)
+        self.guest = Guest("Gavin", 35, 50.00)
 
     def test_customer_has_name(self):
         self.assertEqual("Gavin", self.guest.name)

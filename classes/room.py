@@ -15,4 +15,5 @@ class Room:
         for guest in new_group:
             self.check_in_guest(guest)
        
-  
+    def add_song_to_queue(self, new_song):
+        self.song_queue.append(new_song)
