@@ -9,7 +9,7 @@ class TestGuest(unittest.TestCase):
     def setUp(self):
         self.guest_1 = Guest("Gavin", 35, "Closing Time", 50.00)
         self.guest_2 = Guest("Ailsa", 27, "Romeo and Juliet", 45.00)
-        self.guest_3 = Guest("Stewart", 32, "Don't Think Twice, it's Alright", 55.00)
+        self.guest_3 = Guest("Stewart", 32, "Just Dropped In (To See What Condition My Condition Was In)", 55.00)
         self.guest_4 = Guest("Karissa", 27, "Super Trouper", 48.00)
         self.guest_5 = Guest("Isla", 28, "Oops! I Did it Again", 52.00)
 
