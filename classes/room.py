@@ -13,19 +13,25 @@ class Room:
     def check_in_guest(self, guest):
         self.guests.append(guest)
 
-# if given guest is in room guest list, this removes them (checks them out)
-    def check_out_guest(self, guest):
-        if guest in self.guests:
-            self.guests.remove(guest)
-
 # Seeing as people usually come to karaoke in groups, this calls the check_in_guest function for each guest in a group list.
     def check_in_group(self, group):
         for guest in group:
             self.check_in_guest(guest)
 
-# Checks guests out one by one in a group, as above.      
+#Charges customer for their share of room cost and decreases their cash amount
+    def charge_for_room_share(self, guest):
+        guest.cash -= (self.room_price) / (self.max_capacity)
+
+# if given guest is in room guest list, this charges them their share of the room cost, and removes them (checks them out)
+    def check_out_guest(self, guest):
+        if guest in self.guests:
+            self.charge_for_room_share(guest)
+            self.guests.remove(guest)
+
+# Checks guests out one by one in a group, charging them their share, as above.      
     def check_out_group(self, group):
         for guest in group:
+            self.charge_for_room_share(guest)
             self.check_out_guest(guest)
 
 # Adds song one at a time to a room's song_queue list    

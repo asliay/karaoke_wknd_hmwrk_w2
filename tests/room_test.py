@@ -34,6 +34,10 @@ class TestRoom(unittest.TestCase):
         self.room_1.check_in_group(group_1)
         self.assertEqual(5, self.room_1.guest_count())
 
+    def test_charge_guest_for_room_share(self):
+        self.room_1.charge_for_room_share(self.guest_1)
+        self.assertEqual(40, self.guest_1.cash)
+
     def test_check_out_guest(self):
         self.room_2.check_out_guest(self.guest_1)
         self.assertEqual(0, self.room_1.guest_count())

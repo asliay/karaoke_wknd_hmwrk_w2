@@ -21,10 +21,5 @@ class TestGuest(unittest.TestCase):
     def test_customer_has_cash(self):
         self.assertEqual(50.00, self.guest_1.cash)
 
-    def test_guest_pay_for_room(self):
-        self.guest_1.guest_pay_for_room(self.room_1)
-        self.assertEqual(0, self.guest_1.cash)
-
-    
 
 
