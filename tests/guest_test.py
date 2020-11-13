@@ -25,6 +25,14 @@ class TestGuest(unittest.TestCase):
     def test_bill_starts_at_0(self):
         self.assertEqual(0, self.guest_1.bill)
 
+    def test_remove_cash(self):
+        self.guest_1.remove_cash(25)
+        self.assertEqual(25, self.guest_1.wallet)
+    
+    def test_add_to_bill(self):
+        self.guest_1.add_to_bill(12)
+        self.assertEqual(12, self.guest_1.bill)
+
     def test_buy_drink(self):
         self.guest_2.buy_drink(self.drink_1)
         self.assertEqual(33, self.guest_2.wallet)
