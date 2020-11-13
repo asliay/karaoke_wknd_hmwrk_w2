@@ -3,7 +3,7 @@ import unittest
 from classes.guest import Guest
 from classes.room import Room
 from classes.song import Song
-
+from classes.drink import Drink
 
 class TestGuest(unittest.TestCase):
     def setUp(self):
@@ -19,7 +19,7 @@ class TestGuest(unittest.TestCase):
         self.assertEqual("Gavin", self.guest_1.name)
 
     def test_customer_has_cash(self):
-        self.assertEqual(50.00, self.guest_1.cash)
+        self.assertEqual(50.00, self.guest_1.wallet)
 
     def test_bill_starts_at_0(self):
         self.assertEqual(0, self.guest_1.bill)

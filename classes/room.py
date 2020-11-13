@@ -20,7 +20,7 @@ class Room:
 
 #Charges customer for their share of room cost and decreases their cash amount
     def charge_for_room_share(self, guest):
-        guest.cash -= (self.room_price) / (self.max_capacity)
+        guest.wallet -= (self.room_price) / (self.max_capacity)
 
 # if given guest is in room guest list, this charges them their share of the room cost, and removes them (checks them out)
     def check_out_guest(self, guest):

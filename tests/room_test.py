@@ -3,6 +3,7 @@ import unittest
 from classes.room import Room
 from classes.guest import Guest
 from classes.song import Song
+from classes.drink import Drink
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
@@ -36,7 +37,7 @@ class TestRoom(unittest.TestCase):
 
     def test_charge_guest_for_room_share(self):
         self.room_1.charge_for_room_share(self.guest_1)
-        self.assertEqual(40, self.guest_1.cash)
+        self.assertEqual(40, self.guest_1.wallet)
 
     def test_check_out_guest(self):
         self.room_2.check_out_guest(self.guest_1)
