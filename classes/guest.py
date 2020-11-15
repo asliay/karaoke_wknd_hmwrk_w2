@@ -16,15 +16,18 @@ class Guest:
 
 # Customer orders drink - adds drink_price to drink_tab
     def order_drink(self, drink):
-        if self.age >= 18:
             self.add_to_tab(drink.price)
-        else:
-            return "Sorry, you have to be 18 to purchase alcohol."
+
+# Pays customer's drink tab
+    def settle_drink_tab(self):
+        self.remove_cash(self.drink_tab)
 
 # Adds song one at a time to a room's song_queue list (and stops people queuing the same song multiple times!)   
     def add_song_to_queue(self, room, new_song):
         if new_song not in room.song_queue:
             room.song_queue.append(new_song)
+        else:
+            return "Not again! Pick another song!"
 
 # If a guest's favourite song is on the playlist, they will recognise it and celebrate.
     def recognise_favourite_song(self, room):
@@ -32,9 +35,7 @@ class Guest:
             if song.name == self.favourite_song:
                 return "Yaaay! I love this song!!"
 
-# Pays customer's drink tab
-    def settle_drink_tab(self):
-        self.remove_cash(self.drink_tab)
+
 
     
     
