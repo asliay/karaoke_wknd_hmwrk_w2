@@ -28,11 +28,17 @@ class Guest:
             room.song_queue.append(new_song)
         else:
             return "Not again! Pick another song!"
+# Searches for song in a room's catalogue by name.
+    def search_song_catalogue_by_name(self, room, song_name):
+        for song in room.song_catalogue:
+            if song.name == song_name:
+                return song.name
+            
 
-# If a guest's favourite song is on the playlist, they will recognise it and celebrate.
+# If a guest's favourite song is coming up on the room's song queue, they will recognise it and celebrate.
     def recognise_favourite_song(self, room):
         for song in room.song_queue:
-            if song.name == self.favourite_song:
+            if song == self.favourite_song:
                 return "Yaaay! I love this song!!"
 
 

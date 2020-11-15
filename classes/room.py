@@ -1,8 +1,9 @@
 class Room:
-    def __init__(self, name, max_capacity, room_price):
+    def __init__(self, name, max_capacity, room_price, song_catalogue):
         self.name = name
         self.max_capacity = max_capacity
         self.room_price = room_price
+        self.song_catalogue = song_catalogue
         self.guests = []
         self.song_queue = []
     
@@ -25,7 +26,7 @@ class Room:
     def capacity_reached(self):
         if len(self.guests) >= self.max_capacity:
             return "Sorry! This room is full!"
-            
+
 # Seeing as people usually come to karaoke in groups, this calls the check_in_guest function for each guest in a given group list.
     def check_in_group(self, group_list):
         for guest in group_list:

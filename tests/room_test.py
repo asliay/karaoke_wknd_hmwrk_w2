@@ -7,9 +7,15 @@ from classes.drink import Drink
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
-        self.room_1 = Room("Jungle Room", 5, 50.00)
-        self.room_2 = Room("Disco Room", 10, 100.00)
-        self.room_3 = Room("Outer Space Room", 3, 30.00)
+        self.song_1 = Song("Closing Time", "Semisonic", "Alt Rock")
+        self.song_2 = Song("Romeo and Juliet", "Dire Straits", "Rock")
+        self.song_3 = Song("Thank You For the Music", "ABBA", "Pop")
+        self.song_4 = Song("I Miss You", "Blink-182", "Pop-Punk")
+        song_catalogue = [self.song_1, self.song_2, self.song_3, self.song_4]
+        
+        self.room_1 = Room("Jungle Room", 5, 50.00, song_catalogue)
+        self.room_2 = Room("Disco Room", 10, 100.00, song_catalogue)
+        self.room_3 = Room("Outer Space Room", 3, 30.00, song_catalogue)
 
         self.guest_1 = Guest("Gavin", 35, "Closing Time", 50.00)
         self.guest_2 = Guest("Ailsa", 27, "Romeo and Juliet", 45.00)
