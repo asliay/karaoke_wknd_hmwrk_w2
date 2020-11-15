@@ -91,11 +91,29 @@ class TestRoom(unittest.TestCase):
     def test_check_out_guests(self):
         self.room_1.check_in_guest(self.guest_1)
         self.room_1.check_in_guest(self.guest_2)
-        self.guest_1.order_drink(self.drink_2)
-        self.room_1.check_out_guests(self.guest_1)
-        self.room_1.check_out_guests(self.guest_2)
-        self.assertEqual(20, self.guest_1.wallet)
-        self.assertEqual(20, self.guest_2.wallet)
+        self.room_1.add_song_to_queue(self.song_2)
+        self.room_1.check_out_guests()
         self.assertEqual(0, self.room_1.guest_count())
+        self.assertEqual(0, self.room_1.song_count())
+
+    def test_add_song_to_queue(self):
+        self.room_1.add_song_to_queue(self.song_1.name)
+        duplicate_song = self.room_1.add_song_to_queue(self.song_1.name)
+        self.assertEqual(1, len(self.room_1.song_queue))
+        self.assertEqual("Not again! Pick another song!", duplicate_song)
+
+    def test_search_song_catalogue_by_name(self):
+        song_found = self.room_1.search_song_catalogue_by_name("Closing Time")
+        song_not_found = self.room_1.search_song_catalogue_by_name("Harvest Moon")
+        self.assertEqual("Closing Time", song_found)
+        self.assertEqual(None, song_not_found)
+
+    def test_recognise_favourite_song(self):
+        self.room_1.check_in_guest(self.guest_2)
+        self.room_1.add_song_to_queue(self.song_1)
+        self.room_1.add_song_to_queue(self.song_2)
+        self.room_1.recognise_favourite_song(self.guest_2)
+        self.assertEqual("Yaaay! I love this song!!", self.room_1.recognise_favourite_song(self.guest_2))
+
 
     

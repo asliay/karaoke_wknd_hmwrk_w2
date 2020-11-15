@@ -57,23 +57,7 @@ class TestGuest(unittest.TestCase):
         self.guest_2.settle_drink_tab()
         self.assertEqual(28, self.guest_2.wallet)
 
-    def test_add_song_to_queue(self):
-        self.guest_1.add_song_to_queue(self.room_1, self.song_1.name)
-        duplicate_song = self.guest_1.add_song_to_queue(self.room_1, self.song_1.name)
-        self.assertEqual(1, len(self.room_1.song_queue))
-        self.assertEqual("Not again! Pick another song!", duplicate_song)
-
-    def test_search_song_catalogue_by_name(self):
-        song_found = self.guest_1.search_song_catalogue_by_name(self.room_1, "Closing Time")
-        song_not_found = self.guest_1.search_song_catalogue_by_name(self.room_1, "Harvest Moon")
-        self.assertEqual("Closing Time", song_found)
-        self.assertEqual(None, song_not_found)
-
-    def test_recognise_favourite_song(self):
-        self.guest_1.add_song_to_queue(self.room_1, self.song_1.name)
-        self.guest_1.add_song_to_queue(self.room_1, self.song_2.name)
-        self.guest_2.recognise_favourite_song(self.room_1)
-        self.assertEqual("Yaaay! I love this song!!", self.guest_2.recognise_favourite_song(self.room_1))
+    
 
     
 

@@ -22,24 +22,10 @@ class Guest:
     def settle_drink_tab(self):
         self.remove_cash(self.drink_tab)
 
-# Adds song one at a time to a room's song_queue list (and stops people queuing the same song multiple times!)   
-    def add_song_to_queue(self, room, new_song):
-        if new_song not in room.song_queue:
-            room.song_queue.append(new_song)
-        else:
-            return "Not again! Pick another song!"
-# Searches for song in a room's catalogue by name.
-    def search_song_catalogue_by_name(self, room, song_name):
-        for song in room.song_catalogue:
-            if song.name == song_name:
-                return song.name
+
             
 
-# If a guest's favourite song is coming up on the room's song queue, they will recognise it and celebrate.
-    def recognise_favourite_song(self, room):
-        for song in room.song_queue:
-            if song == self.favourite_song:
-                return "Yaaay! I love this song!!"
+
 
 
 

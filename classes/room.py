@@ -37,9 +37,28 @@ class Room:
         guest.settle_drink_tab()
         guest.wallet -= (self.room_price) / (len(self.guests))
 
-# Charges customer their share of the room cost, settles their tab, and checks them out (removes from room)
-    def check_out_guests(self, guests):
-        for guest in self.guests:
-            self.charge_for_room_share(guest)
+#Empties room guest list + song queue
+    def check_out_guests(self):
         self.guests.clear()
+        self.song_queue.clear()
+
+# Adds song one at a time to a room's song_queue list (and stops people queuing the same song multiple times!)   
+    def add_song_to_queue(self, new_song):
+        if new_song not in self.song_queue:
+            self.song_queue.append(new_song)
+        else:
+            return "Not again! Pick another song!"
+            
+# Searches for song in a room's catalogue by name.
+    def search_song_catalogue_by_name(self, song_name):
+        for song in self.song_catalogue:
+            if song.name == song_name:
+                return song.name
+
+# If a guest's favourite song is coming up on the room's song queue, they will recognise it and celebrate.
+    def recognise_favourite_song(self, guest):
+        for guest in self.guests:
+            for song in self.song_queue:
+                if song.name == guest.favourite_song:
+                    return "Yaaay! I love this song!!"
 
